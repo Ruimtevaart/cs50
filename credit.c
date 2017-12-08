@@ -53,7 +53,6 @@ int main(void)
     }
     sum=sum1+sum2;
     long long type;
-    type=cardnum;
     if(sum%10==0)
     {
         if(count==15)
@@ -65,9 +64,8 @@ int main(void)
             if(cardnum==34||cardnum==37)
             {
                 printf("AMEX\n");
-                return 0;
             }
-            else {printf("INVALID\n"); return 0;}
+            else printf("INVALID\n");
         }
         else if(count==13)
         {
@@ -78,9 +76,8 @@ int main(void)
             if(cardnum==4)
             {
                 printf("VISA\n");
-                return 0;
             }
-            else {printf("INVALID\n"); return 0;}
+            else printf("INVALID\n");
         }
         else if(count==16)
         {
@@ -92,7 +89,6 @@ int main(void)
             if(type==4)
             {
                 printf("VISA\n");
-                return 0;
             }
             else
             {
@@ -104,10 +100,10 @@ int main(void)
                 if(type==51||type==52||type==53||type==54||type==55)
                 {
                     printf("MASTERCARD\n");
-                    return 0;
                 }
             }
         }
     }
+    else printf("INVALID\n");
     return 0;
 }
