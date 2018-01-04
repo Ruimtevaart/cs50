@@ -18,7 +18,7 @@ int main(int argc, string argv[])
     string answer;
     string symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     //tikrina slaptazodzius a-Z
-    for(int a = 0; a < 52; a++)
+    for (int a = 0; a < 52; a++)
     {
         key[0] = symbols[a];
         answer = crypt(key, salt);
@@ -29,7 +29,7 @@ int main(int argc, string argv[])
         }
     }
     //tikrina slaptazodzius aa-ZZ
-    for(int b = 0; b < 52; b++)
+    for (int b = 0; b < 52; b++)
     {
         key[0] = symbols[b];
         answer = crypt(key, salt);
@@ -38,11 +38,11 @@ int main(int argc, string argv[])
             printf("%s\n", key);
             return 0;
         }
-        for(int c = 0; c < 52; c++)
+        for (int c = 0; c < 52; c++)
         {
             key[1] = symbols[c];
             answer = crypt(key, salt);
-            if(strcmp(answer, argv[1]) == 0)
+            if (strcmp(answer, argv[1]) == 0)
             {
                 printf("%s\n", key);
                 return 0;
@@ -50,7 +50,7 @@ int main(int argc, string argv[])
         }
     }
     //tikrina slaptazodzius aaa-ZZZ
-    for(int d = 0; d < 52; d++)
+    for (int d = 0; d < 52; d++)
     {
         key[0] = symbols[d];
         answer = crypt(key, salt);
@@ -59,11 +59,11 @@ int main(int argc, string argv[])
             printf("%s\n", key);
             return 0;
         }
-        for(int e = 0; e < 52; e++)
+        for (int e = 0; e < 52; e++)
         {
             key[1] = symbols[e];
             answer = crypt(key, salt);
-            if(strcmp(answer, argv[1]) == 0)
+            if (strcmp(answer, argv[1]) == 0)
             {
                 printf("%s\n", key);
                 return 0;
@@ -72,7 +72,7 @@ int main(int argc, string argv[])
             {
                 key[2] = symbols[f];
                 answer = crypt(key, salt);
-                if(strcmp(answer, argv[1]) == 0)
+                if (strcmp(answer, argv[1]) == 0)
                 {
                     printf("%s\n", key);
                     return 0;
@@ -81,7 +81,7 @@ int main(int argc, string argv[])
         }
     }
     //tikrina slaptazodzius aaaa-ZZZZ
-    for(int g = 0; g < 52; g++)
+    for (int g = 0; g < 52; g++)
     {
         key[0] = symbols[g];
         answer = crypt(key, salt);
@@ -90,11 +90,11 @@ int main(int argc, string argv[])
             printf("%s\n", key);
             return 0;
         }
-        for(int h = 0; h < 52; h++)
+        for (int h = 0; h < 52; h++)
         {
             key[1] = symbols[h];
             answer = crypt(key, salt);
-            if(strcmp(answer, argv[1]) == 0)
+            if (strcmp(answer, argv[1]) == 0)
             {
                 printf("%s\n", key);
                 return 0;
@@ -103,7 +103,7 @@ int main(int argc, string argv[])
             {
                 key[2] = symbols[i];
                 answer = crypt(key, salt);
-                if(strcmp(answer, argv[1]) == 0)
+                if (strcmp(answer, argv[1]) == 0)
                 {
                     printf("%s\n", key);
                     return 0;
@@ -112,7 +112,7 @@ int main(int argc, string argv[])
                 {
                     key[3] = symbols[j];
                     answer = crypt(key, salt);
-                    if(strcmp(answer, argv[1]) == 0)
+                    if (strcmp(answer, argv[1]) == 0)
                     {
                         printf("%s\n", key);
                         return 0;
@@ -122,7 +122,7 @@ int main(int argc, string argv[])
         }
     }
     //tikrina slaptazodzius aaaaa-ZZZZZ
-    for(int k = 0; k < 52; k++)
+    for (int k = 0; k < 52; k++)
     {
         key[0] = symbols[k];
         answer = crypt(key, salt);
@@ -131,11 +131,11 @@ int main(int argc, string argv[])
             printf("%s\n", key);
             return 0;
         }
-        for(int l = 0; l < 52; l++)
+        for (int l = 0; l < 52; l++)
         {
             key[1] = symbols[l];
             answer = crypt(key, salt);
-            if(strcmp(answer, argv[1]) == 0)
+            if (strcmp(answer, argv[1]) == 0)
             {
                 printf("%s\n", key);
                 return 0;
@@ -144,7 +144,7 @@ int main(int argc, string argv[])
             {
                 key[2] = symbols[m];
                 answer = crypt(key, salt);
-                if(strcmp(answer, argv[1]) == 0)
+                if (strcmp(answer, argv[1]) == 0)
                 {
                     printf("%s\n", key);
                     return 0;
@@ -153,7 +153,7 @@ int main(int argc, string argv[])
                 {
                     key[3] = symbols[n];
                     answer = crypt(key, salt);
-                    if(strcmp(answer, argv[1]) == 0)
+                    if (strcmp(answer, argv[1]) == 0)
                     {
                         printf("%s\n", key);
                         return 0;
@@ -162,7 +162,7 @@ int main(int argc, string argv[])
                     {
                         key[4] = symbols[o];
                         answer = crypt(key, salt);
-                        if(strcmp(answer, argv[1]) == 0)
+                        if (strcmp(answer, argv[1]) == 0)
                         {
                             printf("%s\n", key);
                             return 0;
