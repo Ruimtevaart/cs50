@@ -1,0 +1,12 @@
+1. It's a header file, which contains new integer types that can be used in c (like intN_t). Source: https://en.wikipedia.org/wiki/C_data_types#stdint.h
+2. To make your program more efficient.
+3. BYTE is one byte, DWORD is 4 bytes, LONG is 4 bytes and WORD is 2 bytes
+4. 0xff and 0xd8
+5. bisize is the size of the bitmap info header and bfsize is the size of the bitmap file header.
+6. It means that it counts its pixels from the top of the bitmap to the bottom.
+7. biBitCount. Source: https://en.wikipedia.org/wiki/BMP_file_format
+8. It will return a NULL if it fails to write or read the file being opened.
+9. Beacause we want to read only one element.
+10. 3
+11. It sets the file position of the file to the given offset. Source: https://www.tutorialspoint.com/c_standard_library/c_function_fseek.htm
+12. It's the current position of the file pointer. Source: https://www.tutorialspoint.com/c_standard_library/c_function_fseek.htm
