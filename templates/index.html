@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<html lang="en"><head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/more/styles.css" rel="stylesheet">
+
+        <title>Similarities</title>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Similarities</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/less">less</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/more">more <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <form action="/score" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <input class="form-control" name="string1" placeholder="String" type="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="string2" placeholder="String" type="text">
+                </div>
+                <button class="btn btn-default" type="submit">Score</button>
+            </form>
+        </div>
+    </div>
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+
+</body></html>
+    <!-- TODO -->
+
+{% endblock %}
