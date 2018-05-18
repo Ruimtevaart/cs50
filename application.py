@@ -50,7 +50,7 @@ def index():
     index1 = db.execute("SELECT * FROM stocks WHERE id = :session", session=session["user_id"])
     totalsum = db.execute("SELECT SUM(total) FROM stocks WHERE id = :session", session=session["user_id"])
     cash = db.execute("SELECT cash FROM users WHERE id = :session", session=session["user_id"])
-    return render_template("index.html", index1=index1, totalsum=usd(totalsum[0]["SUM(total)"] + cash[0]["cash"]), cash=usd(cash[0]["cash"]))
+    return render_template("index.html", index1=index1, totalsum=usd(totalsum[0]["SUM(total)"]), cash=usd(cash[0]["cash"]))
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -170,23 +170,26 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
-        if not request.form.get("username"):
+        if not username:
             return apology("must provide username", 400)
-        elif not request.form.get("password"):
+        elif not password:
             return apology("must provide password", 400)
-        elif not request.form.get("confirmation"):
+        elif not confirmation:
             return apology("must provide confirmation", 400)
+        if (password != confirmation):
+            return apology("Missmatching passwords!")
+        userfind = db.execute("SELECT id FROM users WHERE username = :username",
+                              username=username)
+        if userfind:
+            return apology("Username already exists!", 400)
         passhash = generate_password_hash(password)
         db.execute("INSERT INTO users (username, hash) VALUES (:username, :passhash)",
                    username=username, passhash=passhash)
         rows = db.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
+                          username=username)
         session["user_id"] = rows[0]["id"]
         return redirect("/")
-    # if (username == "" || password == "" || confirmation == ""):
-    #     return apology("Missing username!")
-    # if (password != confirmation):
-    #     return apology("Missmatching passwords!")
+
     else:
         return render_template("register.html")
 
