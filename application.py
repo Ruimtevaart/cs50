@@ -171,11 +171,11 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username", 400)
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password", 400)
         elif not request.form.get("confirmation"):
-            return apology("must provide confirmation", 403)
+            return apology("must provide confirmation", 400)
         passhash = generate_password_hash(password)
         db.execute("INSERT INTO users (username, hash) VALUES (:username, :passhash)",
                    username=username, passhash=passhash)
