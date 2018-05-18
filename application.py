@@ -48,9 +48,9 @@ db = SQL("sqlite:///finance.db")
 def index():
     """Show portfolio of stocks"""
     index1 = db.execute("SELECT * FROM stocks WHERE id = :session", session=session["user_id"])
-    totalsum = db.execute("SELECT SUM(total) FROM stocks WHERE id = :session", session=session["user_id"])
+    totalsum = db.execute("SELECT SUM(total) as suma FROM stocks WHERE id = :session", session=session["user_id"])
     cash = db.execute("SELECT cash FROM users WHERE id = :session", session=session["user_id"])
-    return render_template("index.html", index1=index1, totalsum=usd(totalsum[0]["SUM(total)"]), cash=usd(cash[0]["cash"]))
+    return render_template("index.html", index1=index1, totalsum=usd(totalsum[0]["suma"] + cash[0]["cash"]), cash=usd(cash[0]["cash"]))
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -72,8 +72,8 @@ def buy():
         else:
             db.execute("UPDATE users SET cash = :cash WHERE id = :user",
                        user=user[0]["id"], cash=(cash[0]["cash"] - (buy["price"] * shares)))
-            db.execute("INSERT INTO history (User, Symbol, Shares, Price, Transacted) VALUES (:User, :Symbol, :Shares, :Price, :Transacted)",
-                       User=user[0]["id"], Symbol=symbol, Shares=shares, Price=buy["price"], Transacted=shares * buy["price"])
+            db.execute("INSERT INTO history (User, Symbol, Shares, Price) VALUES (:User, :Symbol, :Shares, :Price)",
+                       User=user[0]["id"], Symbol=symbol, Shares=shares, Price=buy["price"])
             findstock = db.execute("SELECT shares FROM stocks WHERE id = :user AND symbol = :symbol",
                                    user=user[0]["id"], symbol=symbol)
             findprice = db.execute("SELECT total FROM stocks WHERE id = :user AND symbol = :symbol",
@@ -210,20 +210,18 @@ def sell():
             return apology("Too little shares left")
         if (sell is None):
             return apology("Invalid symbol")
-        # elif (cash[0]["cash"] < (sell["price"] * shares)):
-        #     return apology("Invalid amount of CASH")
         else:
             db.execute("UPDATE users SET cash = :cash WHERE id = :user",
                        user=user[0]["id"], cash=(cash[0]["cash"] + (sell["price"] * shares)))
-            db.execute("INSERT INTO history (User, Symbol, Shares, Price, Transacted) VALUES (:User, :Symbol, :Shares, :Price, :Transacted)",
-                       User=user[0]["id"], Symbol=symbol, Shares=shares, Price=sell["price"], Transacted=shares * sell["price"])
+            db.execute("INSERT INTO history (User, Symbol, Shares, Price) VALUES (:User, :Symbol, :Shares, :Price)",
+                       User=user[0]["id"], Symbol=symbol, Shares=shares, Price=(-(sell["price"])))
             finalshares = int(currentshares[0]["shares"]) - shares
             if finalshares == 0:
                 db.execute("DELETE FROM stocks WHERE id=:session AND symbol = :symbol", session=session["user_id"], symbol=symbol)
             else:
                 totalprice = finalshares * sell["price"]
                 db.execute("UPDATE stocks SET shares = :shares, total = :total WHERE id = :session AND symbol = :symbol",
-                           shares=currentshares, session=session["user_id"], symbol=symbol)
+                           shares=finalshares, total=totalprice, session=session["user_id"], symbol=symbol)
             return redirect("/")
     else:
         return render_template("sell.html")
